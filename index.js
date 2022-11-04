@@ -74,18 +74,17 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 }
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
-
-
+console.log(cumleKur("Hello World!"));
 
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
-
+console.log(cumleKur("Hello", " World!"));
 
 
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
-
+bircumle=cumleKur("Ben", " iyi", " bir", " yazılımcı", " olacağım!");
 /* kodlar buraya */
 
 
@@ -104,9 +103,13 @@ var bircumle;
 	*/
 	
 
-function cumlelereDonustur(/* kodlar buraya */ ){
-	/* kodlar buraya */
+function cumlelereDonustur(cumleler, ayrac){
+	let cumle_dizi= cumleler.map(cumle => {
+		return cumle.join(ayrac);
+	});
+	return cumle_dizi;
 }
+console.log(cumlelereDonustur(cumleler," "));
 
 
 
@@ -120,9 +123,12 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
-	/* kodlar buraya */ 
+function paragrafOlustur(cumleler, cumleKur_callback,cumlelereDonustur_callback){
+	let dizi = cumlelereDonustur_callback(cumleler, " ");
+	let paragraf = cumleKur_callback(dizi[1],dizi[3],dizi[5],dizi[7],dizi[9]);
+	return paragraf;
 }
+console.log(paragrafOlustur(cumleler,cumleKur,cumlelereDonustur));
 
 
 /* 	GÖREV 3:
@@ -130,8 +136,10 @@ function paragrafOlustur(/* kodlar buraya */ ){
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
 //3a çözümü
-/* kodlar buraya */
-
+console.log(meyveler);
+meyveler.shift();
+meyveler.pop();
+console.log(meyveler);
 
 
 
@@ -140,7 +148,11 @@ function paragrafOlustur(/* kodlar buraya */ ){
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı oldu. Tavşanı dizinin ilk elemanına 🐇, Kirpiyi dizinin son elemanına ekleyin 🦔 
 */
 //3b çözümü
-/* kodlar buraya */
+console.log(sebzeler);
+sebzeler.unshift("🐇");
+sebzeler.push("🦔");
+console.log(sebzeler);
+
 
 
 
@@ -155,6 +167,9 @@ function paragrafOlustur(/* kodlar buraya */ ){
 /* kodlar buraya */
 
 var manav;
+manav=[];
+manav=meyveler.concat(sebzeler);
+console.log(manav);
 
 
 
@@ -170,10 +185,17 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
-
+function emojileriDonustur(mesaj,emojiler){
+	let dizi=mesaj.split(" ");
+	for(let i=0;i<dizi.length;i++){
+			let k = dizi[i].toLowerCase();
+			if(emojiler[k]!==undefined){
+				mesaj = mesaj.replace(dizi[i],emojiler[k]);
+			}		
+	}
+	return mesaj;
 }
+console.log(emojileriDonustur("Naber :D nasılsın :d görmeyeli :o",emojiler));
 
 
 
